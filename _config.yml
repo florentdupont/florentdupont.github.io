@@ -28,7 +28,7 @@ twitter_username: _fdupont
 github_username:  florentdupont
 
 # Build settings
-theme: jekyll-theme-minimal
+theme: minima
 # plugins:
 
 
