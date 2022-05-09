@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Set up Jekyll with Asciidoc | Florent Dupont’s website</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Set up Jekyll with Asciidoc" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is my first attempt to create a personal website (and more specifically a blog) using Jekyll." />
+<meta property="og:description" content="This is my first attempt to create a personal website (and more specifically a blog) using Jekyll." />
+<link rel="canonical" href="http://0.0.0.0:4000/2021/08/30/setup-asciidoc-with-jekyll.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2021/08/30/setup-asciidoc-with-jekyll.html" />
+<meta property="og:site_name" content="Florent Dupont’s website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-30T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Set up Jekyll with Asciidoc" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","description":"This is my first attempt to create a personal website (and more specifically a blog) using Jekyll.","headline":"Set up Jekyll with Asciidoc","url":"http://0.0.0.0:4000/2021/08/30/setup-asciidoc-with-jekyll.html","dateModified":"2021-08-30T00:00:00-05:00","datePublished":"2021-08-30T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2021/08/30/setup-asciidoc-with-jekyll.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Florent Dupont's website" /><!-- CUSTOM HEAD -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/assets/styles/asciidoc-pygments.css">
+
+    <link rel="stylesheet" href="/assets/styles/twemoji-awesome.css">
+   
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+            equationNumbers: { autoNumber: "AMS" },
+            tagSide: "right"
+            },
+            tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true
+            }
+        });
+        MathJax.Hub.Register.StartupHook("TeX AMSmath Ready", function () {
+            MathJax.InputJax.TeX.Stack.Item.AMSarray.Augment({
+            clearTag() {
+                if (!this.global.notags) {
+                this.super(arguments).clearTag.call(this);
+                }
+            }
+            });
+        });
+        </script>
+        <script type="text/javascript" charset="utf-8"
+        src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML">
+        </script>
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Florent Dupont&#39;s website</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/lib/emoji-inline-macro/sample.html">Emoji Inline Macro Extension</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Set up Jekyll with Asciidoc</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-08-30T00:00:00-05:00" itemprop="datePublished">
+        30 Aug 2021
+      </time>&emsp;
+      <b>      
+       jekyll • asciidoctor • minima
+     </b>      
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is my first attempt to create a personal website (and more specifically a blog) using Jekyll.</p>
+</div>
+<div class="paragraph">
+<p><!--more--></p>
+</div>
+<div class="paragraph">
+<p>My last blogs were using solutions like Wordpress or blogspot, but it&#8217;s been a while that I found they were totally not the good solution if I wanted to create a dev blog : syntax highlighting is not available (or to clumsy to set up), formating is too basic with the WYSIWYG editor, etc. I needed a solution more open to customizations that could bring me syntax highlighting out-of-the-box.</p>
+</div>
+<div class="paragraph">
+<p>Last year I discovered <a href="https://asciidoctor.org/">Asciidoctor</a> and <a href="https://asciidoctor.org/">Antora</a>. Before that I used mostly Markdown that I liked for its simplicity. Asciidoc is a Markdown++. It offers more possibilities which makes it a good choice to write technical docs and &#8230;&#8203; Found it could be a good opportunity to find a static blog engine that could use Asciidoc instead of Markdown (because yes, most of static website generator are more Markdown-friendly and almost none is available natively for Asciidoc).</p>
+</div>
+<div class="paragraph">
+<p>I liked the simplicity of Jekyll, and found out an extension is available to write articles in Asciidoc : it&#8217;s worth a try!</p>
+</div>
+<div class="paragraph">
+<p>The main documentation is <a href="https://github.com/asciidoctor/jekyll-asciidoc">available on the project Github page</a>. The first thing you see is that the installation seems pretty &#8230;&#8203; long!</p>
+</div>
+<div class="paragraph">
+<p>I also found an easier way on <a href="https://www.crystal-growth.net/jekyll/2020/10/16/jekyll-setup.html">this site</a>.</p>
+</div>
+<div class="paragraph">
+<p>So my first attempt was to include <code>gem 'jekyll-asciidoc'</code>, which was easy to set up. The first generation was OK, but the look of the generated Asciidoc looked too awful. I needed something more like the new version Antora (at this time of writing, version 3 is still in beta, but the look is way better that the default Asciidoctor style). I wanted <a href="https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/">something like this</a> : with good looking admonitions, a modern font, etc&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>I found out that the style I wanted was <a href="https://github.com/asciidoctor/asciidoctor-docs-ui">available here</a>. So I imported these CSS, made some customizations (paths of resources), integrated the required fonts, made some style changes here and there to avoid compatibily problems with the default minima Sass file (I won&#8217;t go into details here).</p>
+</div>
+<div class="paragraph">
+<p>And voilà, here are some examples :</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="title-2">Title 2</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="title-3">Title 3</h3>
+<div class="sect3">
+<h4 id="title-4">Title 4</h4>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p>item 1</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> item 2</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> item 2</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://picsum.photos/id/109/600/400/" alt="400">
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>bla</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>bla2</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>bla3</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CPU</dt>
+<dd>
+<p>The brain of the computer.</p>
+</dd>
+<dt class="hdlist1">Hard drive</dt>
+<dd>
+<p>Permanent storage for operating system and/or user files.</p>
+</dd>
+<dt class="hdlist1">RAM</dt>
+<dd>
+<p>Temporarily stores information the CPU uses during operation.</p>
+</dd>
+<dt class="hdlist1">Keyboard</dt>
+<dd>
+<p>Used to enter text or control items on the screen.</p>
+</dd>
+<dt class="hdlist1">Mouse</dt>
+<dd>
+<p>Used to point to and select items on your computer screen.</p>
+</dd>
+<dt class="hdlist1">Monitor</dt>
+<dd>
+<p>Displays information in visual form using text and graphics.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Links : <a href="https://www.asciidoctor.org" class="bare">https://www.asciidoctor.org</a></p>
+</div>
+<div class="quoteblock">
+<div class="title">After landing the cloaked Klingon bird of prey in Golden Gate park:</div>
+<blockquote>
+Everybody remember where we parked.
+</blockquote>
+<div class="attribution">
+&#8212; Captain James T. Kirk<br>
+<cite>Star Trek IV: The Voyage Home</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>Syntax highlighting is done using pygment <a href="https://github.com/asciidoctor/jekyll-asciidoc#stylesheet-for-code-highlighting">as explained in the doc</a>.
+I also made some customisations on callouts to make them look more like the <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#spring-core">Spring documentation</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-kn">package</span> <span class="tok-nn">examples</span><span class="tok-p">;</span>
+
+<span class="tok-kd">public</span> <span class="tok-kd">class</span> <span class="tok-nc">ExampleBean</span> <span class="tok-p">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+
+    <span class="tok-c1">// Fields omitted</span>
+
+    <span class="tok-nd">@ConstructorProperties</span><span class="tok-p">({</span><span class="tok-s">&quot;years&quot;</span><span class="tok-p">,</span> <span class="tok-s">&quot;ultimateAnswer&quot;</span><span class="tok-p">})</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="tok-kd">public</span> <span class="tok-nf">ExampleBean</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">years</span><span class="tok-p">,</span> <span class="tok-n">String</span> <span class="tok-n">ultimateAnswer</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+        <span class="tok-k">this</span><span class="tok-p">.</span><span class="tok-na">years</span> <span class="tok-o">=</span> <span class="tok-n">years</span><span class="tok-p">;</span>
+        <span class="tok-k">this</span><span class="tok-p">.</span><span class="tok-na">ultimateAnswer</span> <span class="tok-o">=</span> <span class="tok-n">ultimateAnswer</span><span class="tok-p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>something</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>something else</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>another thing</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">example with JSON</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="js"><span></span><span class="tok-p">{</span>
+    <span class="tok-s2">&quot;employee&quot;</span><span class="tok-o">:</span> <span class="tok-p">{</span>
+        <span class="tok-s2">&quot;name&quot;</span><span class="tok-o">:</span>       <span class="tok-s2">&quot;sonoo&quot;</span><span class="tok-p">,</span>
+        <span class="tok-s2">&quot;salary&quot;</span><span class="tok-o">:</span>      <span class="tok-mf">56000</span><span class="tok-p">,</span>
+        <span class="tok-s2">&quot;married&quot;</span><span class="tok-o">:</span>    <span class="tok-kc">true</span>
+    <span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Another example numlines</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="kotlin"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><pre><span></span><span class="tok-kd">class</span> <span class="tok-nc">ExampleBean</span> <span class="tok-p">{</span>
+    <span class="tok-c1">// comment</span>
+    <span class="tok-kd">lateinit</span> <span class="tok-kd">var</span> <span class="tok-nv">beanOne</span><span class="tok-p">:</span> <span class="tok-n">AnotherBean</span>
+    <span class="tok-kd">lateinit</span> <span class="tok-kd">var</span> <span class="tok-nv">beanTwo</span><span class="tok-p">:</span> <span class="tok-n">YetAnotherBean</span>
+    <span class="tok-cm">/** another comment */</span>
+    <span class="tok-kd">var</span> <span class="tok-nv">i</span><span class="tok-p">:</span> <span class="tok-kt">Int</span> <span class="tok-o">=</span> <span class="tok-m">0</span>
+<span class="tok-p">}</span>
+</pre></td></tr></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Graphviz were also implemented using <a href="https://github.com/asciidoctor/jekyll-asciidoc#enabling-asciidoctor-diagram">this doc</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/assets/img/dot-example.svg" alt="dot example" width="118" height="345">
+</div>
+</div>
+<div class="paragraph">
+<p>Equations are also available (<a href="https://www.crystal-growth.net/jekyll/2020/10/16/jekyll-setup.html">see this link</a>).</p>
+</div>
+<div class="paragraph">
+<div class="title">Example of equations</div>
+<p>\(\sqrt 4 = 2\)<br>
+\(C = \alpha + \beta Y^{\gamma} + \epsilon\)</p>
+</div>
+<div class="paragraph">
+<p>This is a numbered equation \eqref{myequation}</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{equation}\label{myequation}
+c^2 = a^2 + b^2 + 5
+\end{equation}\]
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Example of custom HTML</div>
+<div class="content">
+<div class="paragraph">
+<p><big style="color:red;text-decoration:wavy underline black">example of passthrough tag</big></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Admonitions :</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Point d'Attention"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>this is awful!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Astuce"></i>
+</td>
+<td class="content">
+hello
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+ce truc est super-important!!
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Avertissement"></i>
+</td>
+<td class="content">
+warning
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="A Noter"></i>
+</td>
+<td class="content">
+note !!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>avec un emoji <i class="twa twa-wink"></i> ! <i class="twa twa-2x twa-turtle"></i>! et un coeur : <i class="twa twa-lg twa-heart"></i> <i class="twa twa-5x twa-u5408"></i>
+<i class="twa twa-4x twa-hammer"></i></p>
+</div>
+<div class="paragraph">
+<p><strong>Bold</strong> and <em>Italic</em> and <code>Code</code> text.</p>
+</div>
+<div class="paragraph">
+<p>Texte replacement : &#169;, &#8594;, &#8658;, &#8482;</p>
+</div>
+<div class="paragraph">
+<p>Table needed some adaptation (conflict with minima styles)</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Table Title</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column 1, Header Row</th>
+<th class="tableblock halign-left valign-top">Column 2, Header Row</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell in column 1, row 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell in column 2, row 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell in column 1, row 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell in column 2, row 2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>I know some items are not perfect and need some slight improvements but things are ready for the first articles!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </div><a class="u-url" href="/2021/08/30/setup-asciidoc-with-jekyll.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+          <p class="feed-subscribe">
+            <a href="/feed.xml">
+              <svg class="svg-icon orange">
+                <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+              </svg><span>Subscribe</span>
+            </a>
+          </p>
+        </div>
+        <div class="footer-col">
+          <p>this is my personal website and you can find here some of my ideas and practices. </p>
+        </div>
+      </div>
+  
+      <div class="social-links"><ul class="social-media-list"><li><a href="https://github.com/florentdupont"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">florentdupont</span></a></li><li><a href="https://www.twitter.com/_fdupont"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">_fdupont</span></a></li></ul>
+</div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>
