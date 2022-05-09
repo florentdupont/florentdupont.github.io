@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Coder en Français, c’est mal ? | Florent Dupont’s website</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Coder en Français, c’est mal ?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Une des difficultés lors du démarrage d&#8217;un projet informatique en France est de savoir si le développeur doit coder en français ou en anglais." />
+<meta property="og:description" content="Une des difficultés lors du démarrage d&#8217;un projet informatique en France est de savoir si le développeur doit coder en français ou en anglais." />
+<link rel="canonical" href="http://0.0.0.0:4000/2022/02/16/code-franglais.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2022/02/16/code-franglais.html" />
+<meta property="og:site_name" content="Florent Dupont’s website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-16T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Coder en Français, c’est mal ?" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","description":"Une des difficultés lors du démarrage d&#8217;un projet informatique en France est de savoir si le développeur doit coder en français ou en anglais.","headline":"Coder en Français, c’est mal ?","url":"http://0.0.0.0:4000/2022/02/16/code-franglais.html","dateModified":"2022-02-16T00:00:00-06:00","datePublished":"2022-02-16T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2022/02/16/code-franglais.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Florent Dupont's website" /><!-- CUSTOM HEAD -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/assets/styles/asciidoc-pygments.css">
+
+    <link rel="stylesheet" href="/assets/styles/twemoji-awesome.css">
+   
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+            equationNumbers: { autoNumber: "AMS" },
+            tagSide: "right"
+            },
+            tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true
+            }
+        });
+        MathJax.Hub.Register.StartupHook("TeX AMSmath Ready", function () {
+            MathJax.InputJax.TeX.Stack.Item.AMSarray.Augment({
+            clearTag() {
+                if (!this.global.notags) {
+                this.super(arguments).clearTag.call(this);
+                }
+            }
+            });
+        });
+        </script>
+        <script type="text/javascript" charset="utf-8"
+        src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML">
+        </script>
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Florent Dupont&#39;s website</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Coder en Français, c&#39;est mal ?</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-02-16T00:00:00-06:00" itemprop="datePublished">
+        16 Feb 2022
+      </time>&emsp;
+      <b>      
+       bonne pratique • nommage
+     </b>      
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Une des difficultés lors du démarrage d&#8217;un projet informatique en France est de savoir si le développeur doit coder en français ou en anglais.</p>
+</div>
+<div class="paragraph">
+<p>Dans notre imaginaire collectif de développeur, un projet informatique c&#8217;est un gros projet visible pour les utilisateurs finaux, développé par une société solide et visionnaire. Un projet à la pointe de la technique, avec une équipe soudée et qui aura un tel succès qu&#8217;il se fera racheté par une société internationale&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>La réalité est tout autre : beaucoup de sociétés développent en interne des outils spécifiques qui resteront pour le marché français et développés puis maintenus par des développeurs Français (souvent externalisé en ESN). Il peut s&#8217;agir de petits projets B2B (et donc qui ne brillent pas par leur visibilité auprès du grand public), ou alors des outils internes qui resteront dans le périmètre des applications de gestion pour gérer la RH, la comptabilité, les process métiers, etc.</p>
+</div>
+<div class="paragraph">
+<p>Alors, s&#8217;il est évident que l&#8217;entreprise ou le projet dispose d&#8217;une équipe internationale, l'*anglais va s&#8217;imposer naturellement, il en est autrement de tous ces petits projets Franco-Français où l&#8217;adoption de l&#8217;anglais est loin d&#8217;être une évidence, et fait souvent l&#8217;objet de débats entre ceux qui ont une approche très théorique et veulent absolument coder en anglais <em>"parce que les vrais développeurs codent en anglais"</em> et ceux qui ont une approche plus conservative <em>"On est en France, on code en Français"</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="est-ce-que-la-réalité-ne-se-trouverait-pas-entre-les-deux">Est-ce que la réalité ne se trouverait pas entre les deux ?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On peut revenir sur plusieurs fausses idées entendues :</p>
+</div>
+<div class="sect2">
+<h3 id="langlais-est-la-langue-commune-des-informaticiens"><em>"L&#8217;anglais est la langue commune des informaticiens"</em>.<br></h3>
+<div class="paragraph">
+<p>Une équipe de développeur est loin d&#8217;être toujours constituée de développeurs Bac+5 ayant fait leur stage de fin d&#8217;étude aux USA et étant à l&#8217;aise en anglais. Ce serait une vision bien réduite du développeur. Comme partout, il y a des développeurs de tout age, de tout niveau (Bac+2 &#8594; Bac+5), mais également des développeurs qui issus de reconversion professionnelle, de mutation internes, etc.</p>
+</div>
+<div class="paragraph">
+<p>De plus, lors processus de recrutement, même si le poste requiert un niveau minimum en anglais, ce dernier est rarement testé si la société  n&#8217;a pas un contexte de développement international.<br>
+En pratique, tout le monde n&#8217;est pas à l&#8217;aise avec l&#8217;anglais et tout le monde n&#8217;en a pas le même niveau de compréhension.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="en-entreprise-on-code-toujours-en-anglais"><em>"En entreprise, on code toujours en anglais"</em></h3>
+<div class="paragraph">
+<p>Souvent entendu lors des cours d&#8217;informatique à l&#8217;Université, et source de déception dès l&#8217;entrée dans le monde du travail : beaucoup de projets sont en Français.</p>
+</div>
+<div class="paragraph">
+<p>De manière plus large, c&#8217;est comme s&#8217;imaginer que tout le code est le fruit des meilleures techniques de développements, avec des algorithmes élaborés, bien documentés et donc codé en anglais.<br>
+La réalité est aussi beaucoup moins rose : il existe du patrimoine Legacy, codé "avec les moyens du bord", du code temporaire qui reste des années, du code à-la-va-vite-parcequ&#8217;on-est-pressé, du code réalisé sans cadre, sans s&#8217;imposer de règle de développement&#8230;&#8203;</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="coder-en-anglais-pour-anticiper-un-développement-à-létranger"><em>"Coder en anglais pour anticiper un développement à l&#8217;étranger"</em>.</h3>
+<div class="paragraph">
+<p>En effet, on ne sait jamais non plus de quoi l&#8217;avenir sera fait.</p>
+</div>
+<div class="paragraph">
+<p>Et si en effet, pour beaucoup de sociétés privées, cette option a du sens en terme de stratégie de long terme (rachat par un plus gros groupe, expansion à l&#8217;international, etc..), ou bien pour réduire les coûts de développement (externalisation en offshore - même si c&#8217;est discutable), pour certains autres acteurs ce n&#8217;est pas envisageable.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est le cas des projets d&#8217;administrations publiques de certaines sociétés nationales qui vont privilégier des développements en interne, dans un contexte Français&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="et-si-coder-en-français-nétait-pas-une-si-mauvaise-chose">Et si coder en français n&#8217;était pas une si mauvaise chose ?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La réalité est donc souvent plus pragmatique, et il faut souvent composer avec les sensibilités de chacun et du contexte du projet.</p>
+</div>
+<div class="paragraph">
+<p>En France, dès lors que l’on travaille pour une société/institution nationale, il y’a fort à parier que cette sacro-sainte règle du “codage en anglais” ne soit pas prise en compte, et que l&#8217;on privilégie finalement un codage en français.</p>
+</div>
+<div class="paragraph">
+<p>Quelques éléments peuvent nous aider à de comprendre pourquoi ce n&#8217;est pas forcément une mauvaise chose et s&#8217;en tirer en gardant du code de qualité.</p>
+</div>
+<div class="sect2">
+<h3 id="privilégier-le-langage-omniprésent">Privilégier le <em>Langage Omniprésent</em></h3>
+<div class="paragraph">
+<p>En DDD, une notion importante est l&#8217;<a href="https://martinfowler.com/bliki/UbiquitousLanguage.html">Ubiquitous Language</a>, ce langage qui sert de langue commune entre le développeur et l&#8217;utilisateur.</p>
+</div>
+<div class="paragraph">
+<p>En l&#8217;adaptant au contexte de développement Agile, le Product Owner, le Business Analyst et le Developpeur doivent se comprendre en utilisant des termes identiques. Ils se comprennent car ils utilisent le même jargon métier. Les concepts sont partagés et représentent une définition commune au sein de l&#8217;équipe Projet.</p>
+</div>
+<div class="paragraph">
+<p>Et c&#8217;est là une des difficultés de développer en Anglais : Si l&#8217;équipe PO/BA rédige les US en Français et que le développeur code en anglais, il n&#8217;y a plus de langue commune.</p>
+</div>
+<div class="paragraph">
+<p>Celà impose à l&#8217;équipe de traduire en permanence les concepts métiers, qui amène des confusions et est source de frustrations et d&#8217;erreurs.</p>
+</div>
+<div class="paragraph">
+<p>Sans compter le manque de précision, les ambiguités et faux-amis apportés par certains éléments de langages qui peuvent atténuer la précision d&#8217;un concept ou en détourner le sens.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="eviter-les-ambiguités-et-faciliter-la-compréhension">Eviter les ambiguités et faciliter la compréhension</h3>
+<div class="paragraph">
+<p>Il est préférable de coder et de commenter dans un langage que l&#8217;on maitrise pour éviter les malentendus et pour faire apparaitre les subtilités de langage.</p>
+</div>
+<div class="paragraph">
+<p>Comme on l&#8217;a vu précédemment, si l&#8217;anglais était fortement adopté et si tout le monde était à l&#8217;aise avec l&#8217;anglais, la question ne se poserait pas. Mais ce n&#8217;est évidemment pas le cas.</p>
+</div>
+<div class="paragraph">
+<p>Certains ne sont pas à l&#8217;aise avec l&#8217;anglais, et - par fierté - ne vont peut-être pas l&#8217;admettre.
+Se forcer à coder en anglais alors que l&#8217;équipe n&#8217;est pas à l&#8217;aise risque de conduire à des nommages ou des commentaires peu précis, et des incompréhensions et donc à des sources d&#8217;erreurs, un manque de lisibilité et maintenabilité.</p>
+</div>
+<div class="paragraph">
+<p>Il est préférable, dans ce cas, de coder en Français pour faciliter un nommage cohérent et précis tout en disposant de commentaires pertinents tirant parti des subtilités du langage maitrisé par l&#8217;équipe.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="coder-en-français-ok-mais-comment-maintenir-la-lisibilité">Coder en Français, OK, mais comment maintenir la lisibilité ?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Accepter d&#8217;avoir du code en Français, c&#8217;est indubitablement se confronter à du code en Franglais : le code issu de la conception et du langage Métier est en français, mais le code issu du langage, framework et librairie est en anglais.</p>
+</div>
+<div class="paragraph">
+<p>Le mélange des deux mondes (Technique et Fonctionnel) impliquera donc indubitablement un mix Français/Anglais&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Pour garder un code lisible et donc maintenable, il est important de s&#8217;imposer des règles et de rester cohérent sur l&#8217;application.</p>
+</div>
+<div class="sect2">
+<h3 id="entités-et-services-métier">Entités et Services Métier</h3>
+<div class="paragraph">
+<p>Pour les entités du modèle métier, les concepts calquent le langage commun entre les développeurs et le Product Owner / Business Analyst. Il est donc important qu&#8217;il soit en Français.</p>
+</div>
+<div class="paragraph">
+<p>Les classes de Service qui s&#8217;appuient sur ces concepts métiers pour les manipuler via des méthodes doivent suivre la même approche. Les noms des méthodes manipulant les concepts Métiers doivent également rester en Français pour simplifier la compréhension, notamment lorsqu’il s’agit de processus métier.</p>
+</div>
+<div class="paragraph">
+<p>On retrouve donc :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les noms des classes du modèle métiers, leurs attributs et méthodes</p>
+</li>
+<li>
+<p>Les classes de Service, et leurs méthodes</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Quelques exemples :
+<code>StatutCarte</code>, <code>CoordonneeBancaire</code>, <code>̀Contact.nom</code>, <code>AideSaisie.categorie</code>,  <code>UtilisateurService.creerFiche()</code>,<code>BudgetService.genererRapport()</code>, <code>CommandeService.cloturerCommande()</code></p>
+</div>
+<div class="paragraph">
+<p>Quelques contre-exemples :
+<code>UserService.createNouvelleFiche()</code>, <code>PaysService.exists(codeIso)</code></p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Point d'Attention"></i>
+</td>
+<td class="content">
+<div class="title">Eviter les mot-vides</div>
+<div class="paragraph">
+<p>Un mot-vide est un mot tellement commun qu&#8217;il n&#8217;apporte aucune information supplémentaire à la compréhension. Les mot-vides les plus courants que l&#8217;on peut retrouver dans les nommages sont "le", "la", "du", "de", "d'", "avec", "dans", etc.</p>
+</div>
+<div class="paragraph">
+<p><code>FicheDeLiaison</code> &#8594; <code>FicheLiaison</code><br>
+<code>UniteDOrganisation</code> &#8594; <code>UniteOrganisation</code><br>
+<code>AideALaSaisie</code> &#8594; <code>AideSaisie</code><br>
+<code>StatutDeLaDemande</code> &#8594; <code>StatutDemande</code></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="briques-techniques">Briques Techniques</h3>
+<div class="paragraph">
+<p>Les briques purement techniques de l&#8217;application, c&#8217;est-à-dire tous les concepts qui ne sont pas manipulés par les PO/BA/utilisateur et ne font donc pas parti du langage commun, doivent rester en Anglais.
+De plus, souvent, ces briques techniques se lient aux frameworks/librairies existants et il est donc préférable de garder les concepts manipulés par ces librairies/frameworks, sans chercher à les traduire.</p>
+</div>
+<div class="paragraph">
+<p>On retrouve notamment les briques de configuration, les classes utilitaires, customisation et adaptations spécifiques au projet pour manipuler des concepts techniques particuliers (listener Kafka, intercepteur Spring, Sécurité, etc&#8230;&#8203;).</p>
+</div>
+<div class="paragraph">
+<p>Quelques contre-exemples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ExtensionFichierUtils</code> : la notion d&#8217;extention de fichier est purement technique, cette classe devrait plutôt s&#8217;appeler <code>FileExtensionUtils</code></p>
+</li>
+<li>
+<p><code>checkConcurrenceAcces()</code> (en franglais), n’est que purement technique et aurait donc du s’appeler <code>checkAccessConcurrency()</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="la-difficulté-des-briques-technico-fonctionnelles">La difficulté des briques technico-fonctionnelles</h3>
+<div class="paragraph">
+<p>Comme on l&#8217;a vu précédemment : Les nommages au sein d’un fichier devraient être cohérents: soit tout en anglais (car purement technique), soit toutes en Français (car issu du <em>Langage Commun</em>).</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilisation de Franglais va indéniablement pointer le bout de son nez, notamment lors des liens techniques avec le langage ou les frameworks et librairies, que ce soit Hibernate, les conventions JavaBeans, Spring Data, etc.<br>
+Il faut en réduire l&#8217;usage aux seules nécessités techniques. Evidemment ici, tout dépend du langage et des frameworks utilisés&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>On retrouve quelques cas <em>faciles</em> :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les getters/setters : <code>getAccuseReception()</code>, <code>setUtilisateur()</code></p>
+</li>
+<li>
+<p>Les suffixes des <em>couches</em> : <code>FicheClientRepository</code>, <code>CarteAchatService</code>, <code>UtilisateurController</code></p>
+</li>
+<li>
+<p>Les méthodes de Repository/DAO (dépendamment de la techno utilisée évidemment, mais Spring Data impose un nommage particulier) : <code>findAllByNomAndAgeAfter()</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Point d'Attention"></i>
+</td>
+<td class="content">
+<div class="title">Quelques exemples de Franglais qui peuvent être évités :</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>assertActiviteObligatoireValide</code> est un contrôle métier peut donc être nommé intégralement en français <code>controlerValiditeActiviteObligatoire</code>.</p>
+</li>
+<li>
+<p><code>UtilisateurService.findFicheById()</code> (couche Service) aurait dû s’appeler <code>rechercherFicheParId()</code>. La méthode est bien nommée <code>UtilisateurRepository.findFicheById()</code> (couche Repository) à cause des conventions Spring Data JPA.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Mais tous ces cas de figure ne sont pas aussi simple : Des cas plus complexes se recontrent pour la gestion de Cache (des objets metiers sont en cache, mais la brique de gestion de cache est purement technique), le mapping (au sens large JSON, ORM, bean-bean, etc), la gestion de la sécurité (droits/habilitation), l&#8217;intégration de flux, le rejeu, le messaging, etc..</p>
+</div>
+<div class="paragraph">
+<p>Il n&#8217;y a malheureusement pas de formule magique ici et pour ces cas, le Franglais semble inévitable&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Garder à l&#8217;esprit une règle : <strong>L’important est de rester cohérent pour faciliter la lisibilité du code</strong>.<br>
+Ca veut dire cohérent :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>avec le code existant : vérifier ce qui a déjà été fait et se calquer sur l&#8217;existant.</p>
+</li>
+<li>
+<p>avec soi-même : vérifier que les nommages soient bien cohérents dans les différentes portions du code qui viennent d&#8217;être écrite ?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Quelques exemples de Franglais inévitables :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>reindexAllEmploye()</code> : la brique de recherche full-text est une brique purement technique (en anglais donc), mais l&#8217;entité indexée est nommée en français partout ailleurs dans le reste de l&#8217;application. Ici le franglais semble inevitable&#8230;&#8203;</p>
+</li>
+<li>
+<p><code>JwtClaims buildClaims(Utilisateur utilisateur)</code> : la brique de sécurité en place de forger un token JWT (en anglais donc) s&#8217;appuie sur une Entité Utilisateur en français&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En quelques points :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Imposer absolument l&#8217;anglais n&#8217;a pas forcément toujours du sens : il faut savoir s&#8217;adapter au contexte de l&#8217;entreprise (ou du projet) et s&#8217;adapter au niveau linguistique de l&#8217;équipe présente et future (pensez à la maintenance future de l&#8217;application!).</p>
+</li>
+<li>
+<p>Développer une application en Français, c’est s’exposer obligatoirement à du code en Franglais. Quoi qu&#8217;on fasse on ne pourra pas y échapper. Il faut l&#8217;accepter.</p>
+</li>
+<li>
+<p>Il faut s&#8217;autoriser de la souplesse et ne pas vouloir tout traduire. Il faut avoir conscience des frontières :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Les termes techniques doivent rester en Anglais conformément aux conventions attendues par les langages/librairies/frameworks.</p>
+</li>
+<li>
+<p>Les termes Métier doivent rester en Français pour assurer une cohérence lors des échanges avec le PO, BA et utilisateurs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Une traduction (dans un sens ou dans l&#8217;autre) risque de réduire la compréhension par l&#8217;ensemble des membres du projet.</p>
+</li>
+<li>
+<p>Une des clés de la maintenabilité est d&#8217;être cohérent sur l&#8217;application: Imposez-vous des règles pour les différentes typologies de fichiers et partagez-les entre développeurs.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+  </div><a class="u-url" href="/2022/02/16/code-franglais.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+          <p class="feed-subscribe">
+            <a href="/feed.xml">
+              <svg class="svg-icon orange">
+                <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+              </svg><span>Subscribe</span>
+            </a>
+          </p>
+        </div>
+        <div class="footer-col">
+          <p>this is my personal website and you can find here some of my ideas and practices. </p>
+        </div>
+      </div>
+  
+      <div class="social-links"><ul class="social-media-list"><li><a href="https://github.com/florentdupont"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">florentdupont</span></a></li><li><a href="https://www.twitter.com/_fdupont"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">_fdupont</span></a></li></ul>
+</div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>
