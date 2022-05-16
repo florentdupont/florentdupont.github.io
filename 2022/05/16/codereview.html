@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Code Review : Que vérifier ? | Florent Dupont’s website</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Code Review : Que vérifier ?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="La Code Review c&#8217;est bien mais encore faut-il savoir quoi reviewer&#8230;&#8203;" />
+<meta property="og:description" content="La Code Review c&#8217;est bien mais encore faut-il savoir quoi reviewer&#8230;&#8203;" />
+<link rel="canonical" href="http://0.0.0.0:4000/2022/05/16/codereview.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2022/05/16/codereview.html" />
+<meta property="og:site_name" content="Florent Dupont’s website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-16T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Code Review : Que vérifier ?" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","description":"La Code Review c&#8217;est bien mais encore faut-il savoir quoi reviewer&#8230;&#8203;","headline":"Code Review : Que vérifier ?","url":"http://0.0.0.0:4000/2022/05/16/codereview.html","dateModified":"2022-05-16T00:00:00-05:00","datePublished":"2022-05-16T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2022/05/16/codereview.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Florent Dupont's website" /><!-- CUSTOM HEAD -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/assets/styles/asciidoc-pygments.css">
+
+    <link rel="stylesheet" href="/assets/styles/twemoji-awesome.css">
+   
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: {
+            equationNumbers: { autoNumber: "AMS" },
+            tagSide: "right"
+            },
+            tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true
+            }
+        });
+        MathJax.Hub.Register.StartupHook("TeX AMSmath Ready", function () {
+            MathJax.InputJax.TeX.Stack.Item.AMSarray.Augment({
+            clearTag() {
+                if (!this.global.notags) {
+                this.super(arguments).clearTag.call(this);
+                }
+            }
+            });
+        });
+        </script>
+        <script type="text/javascript" charset="utf-8"
+        src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML">
+        </script>
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Florent Dupont&#39;s website</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Code Review : Que vérifier ?</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-05-16T00:00:00-05:00" itemprop="datePublished">
+        16 May 2022
+      </time>&emsp;
+      <b>      
+       bonne pratique • code-review • checklist
+     </b>      
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>La Code Review c&#8217;est bien mais encore faut-il savoir quoi reviewer&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Cette liste est <strong>très très loin d&#8217;être exhaustive</strong>. Elle est issue d&#8217;une expérience concrète sur un précédent projet (principalement Java, SpringBoot, React). Elle n&#8217;est pas forcément applicable "telle qu&#8217;elle" dans tous les contextes et pour tous les projets mais fournit de bons premiers éléments.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Point d'Attention"></i>
+</td>
+<td class="content">
+<div class="title">Rester ouvert d&#8217;esprit et agile.</div>
+Il faut garder à l&#8217;esprit de ne pas appliquer tous les points de manière trop stricte : dans certains cas, certaines règles peuvent être reconsidérées si le besoin se justifie.<br>
+Toute la difficulté du métier de développeur est de savoir prendre du recul, de savoir appliquer les bonnes règles selon le contexte et parfois s&#8217;autoriser des exceptions.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="préalable-à-la-revue-de-code">Préalable à la revue de code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Avant même de faire la revue de code, se poser les questions suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que l&#8217;implémentation répond au besoin énoncé par l&#8217;US?</p>
+</li>
+<li>
+<p>Est-ce que la feature fonctionne correctement dans le navigateur cible ?</p>
+</li>
+<li>
+<p>Est-ce que les R.G. sont toutes implémentées ?</p>
+</li>
+<li>
+<p>Est-ce que les Test d&#8217;Acceptance de l&#8217;US sont OK ?</p>
+</li>
+<li>
+<p>Est-ce que ça build ? (via <code>mvn compile</code> ou autre)</p>
+</li>
+<li>
+<p>Est-ce que les TU/TI passent à 100% ?</p>
+</li>
+<li>
+<p>Est-ce que le code est bien à jour par rapport à <code>develop</code> (rebase)?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Si une des réponses est NON, alors, pas besoin d&#8217;aller plus loin !!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quels-outils-pour-maider-dans-ma-code-review">Quels outils pour m&#8217;aider dans ma Code Review?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.sonarqube.org/">SonarQube</a></p>
+</li>
+<li>
+<p>Le plugin IntelliJ <a href="https://plugins.jetbrains.com/plugin/10083-git-scope">GitScope</a> pour voir le diff entre develop et une feature-branch au sein de l&#8217;IDE</p>
+</li>
+<li>
+<p>Le plugin VSCode <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> pour voir le diff entre develop et une feature-branch au sein de l&#8217;IDE</p>
+</li>
+<li>
+<p>Le plugin IntelliJ <a href="https://plugins.jetbrains.com/plugin/7973-sonarlint">SonarLint</a> pour voir les anomalies sur les fichiers, directement depuis l&#8217;IDE</p>
+</li>
+<li>
+<p>Le <a href="https://docs.gitlab.com/ee/user/project/merge_requests/changes.html">ChangeSet</a> de la Merge Request Gitlab, les <a href="https://docs.gitlab.com/ee/user/project/merge_requests/approvals/">Approvals</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quelques-concepts-à-garder-à-lesprit">Quelques concepts à garder à l&#8217;esprit :</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://fr.wikipedia.org/wiki/Rasoir_d%27Ockham">Le Rasoir d’Ockham</a> n&#8217;est pas le titre d’un album de Tintin</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/KISS_principle">KISS</a> n&#8217;est pas juste qu&#8217;un groupe de rock kitch avec un maquillage improbable.</p>
+</li>
+<li>
+<p>Non, le <a href="https://en.wikipedia.org/wiki/Not_invented_here">NIH</a> n’est pas la dernière MST que les ado se refilent.</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> n’est pas une danse de Fortnite</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a> n’est pas applicable qu’au Gin ! (alcoolo, va !)</p>
+</li>
+<li>
+<p>Pas besoin de faire de muscu pour être <a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="revue-de-code-généralités">Revue de Code - Généralités</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Je ne reviens pas sur les conventions générales des langages (qui sont déjà disponibles ailleurs), mais plutôt les spécificités et l&#8217;architecture logicielle du code source.</p>
+</div>
+<div class="sect2">
+<h3 id="enlever-le-superflu">Enlever le superflu</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Pas des sources superflues (fichiers temporaires, fichiers de constructions, binaires finaux, fichiers de logs)</p>
+</li>
+<li>
+<p>Pas de fichiers spécifiques aux développeurs. (fichiers d&#8217;IDE par exemple - <code>.settings</code>, <code>.projects</code>). Le code source versionné doit rester <a href="https://stackoverflow.com/a/17024588/509269">indépendant de l&#8217;IDE</a>.</p>
+</li>
+<li>
+<p>Pas de fichiers <em>historiques</em> (genre les fichiers nommés <code>*-old.xx</code> ou <code>-sauv</code> ou <code>-backup</code>)</p>
+</li>
+<li>
+<p>pas de portions de code mort. Les portions de code en commentaires n&#8217;ont pas d&#8217;intérêt à rester : créer une branche dédiée si besoin ou le placer dans des snippets, etc. Mais certainement pas dans <code>develop</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="organiser-correctement">Organiser correctement</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que les modules fonctionnels (domaines) sont correctement nommés ? Explicites et parlant ? Est-ce qu&#8217;ils suivent les nommages métiers partagés (au sens DDD)?</p>
+</li>
+<li>
+<p>Est-ce qu&#8217;il n&#8217;y a pas de duplication de code (module déjà existant, classe utilitaire ou fonctions existantes)</p>
+</li>
+<li>
+<p>Est-ce la fonction est bien placée là où elle devrait ?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="modulariser-des-sources">Modulariser des sources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que la fonctionnalité suit sur le découpage en domaine ?</p>
+</li>
+<li>
+<p>Est-ce que le découpage est d&#8217;abord fonctionnel, puis technique ?</p>
+</li>
+<li>
+<p>Est ce que les couches techniques repository, domain, utils, common, business sont présentes et correctement nommées ?</p>
+</li>
+<li>
+<p>Est ce qu&#8217;il n&#8217;est pas sur-découpé ? Eviter une trop grande profondeur de niveaux fonctionnels ou techniques</p>
+</li>
+<li>
+<p>Est-ce que l&#8217;on privilégie bien la composition plutot que l&#8217;héritage ?</p>
+</li>
+<li>
+<p>Est ce que les classes suivent la convention de nommage de package interne : <code>fr.mycompany.myawesomeproject.domain.xxxxx</code> ?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bien-nommer-les-choses">Bien nommer les choses</h3>
+<div class="paragraph">
+<p>Se reférrer au post précédent sur les nommages</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les termes métiers sont en français.</p>
+</li>
+<li>
+<p>Les briques techniques sont en anglais (Utiltaires, etc..).</p>
+</li>
+<li>
+<p>Est-ce que les Utilitaires sont dans un module <code>core</code> ou <code>common</code> ?</p>
+</li>
+<li>
+<p>Est-ce que les nommages sont cohérents et respectent le contract (ils font ce qu&#8217;ils disent qu&#8217;il font ?) par exemple : un readXX est idempotent et ne modifie pas l&#8217;état d&#8217;un objet.</p>
+</li>
+<li>
+<p>Est ce que les variables d&#8217;ID sont nommées de manière cohérente dans l&#8217;application (par exemple s&#8217;il y&#8217;a un <code>idProject</code>, on devrait avoir un <code>idUser</code> et non pas un <code>userId</code>)?</p>
+</li>
+<li>
+<p>Nommage des fichiers : Est-ce que les fichiers sont bien nommés selon le langage ou la technologie?</p>
+</li>
+<li>
+<p>Nommage des classes : Est-ce que les classes sont bien nommées en adéquation avec le nom du fichier ?</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Point d'Attention"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<div class="title">Rappel sur les différents types de casses :</div>
+<ul>
+<li>
+<p><strong>snake_case</strong> : mots en minuscule séparés par <code>_</code> : <code>ma_variable</code></p>
+</li>
+<li>
+<p><strong>camelCase</strong> : premier mot en minuscule, chaque autre commence par une majuscule : <code>maVariable</code></p>
+</li>
+<li>
+<p><strong>PascalCase</strong> (aka <strong>UpperCamelCase</strong>): Chaque mot commence par une majuscule : <code>MaClasse</code></p>
+</li>
+<li>
+<p><strong>kebab-case</strong> (aka <strong>spinal-case</strong>): mots en minuscule, séparés par <code>-</code>: <code>ma-variable</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="documenter-ni-trop-ni-trop-peu">Documenter ni trop ni trop peu</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Privilégier l&#8217;autodocumentation :nommage explicite des méthodes, des paramétres qui <em>parlent d&#8217;eux-mêmes</em>.</p>
+</li>
+<li>
+<p>Documentation présente pour expliquer l&#8217;objectif d&#8217;une fonction</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Si algo <em>"complexe"</em>, <em>"déroutant"</em>, <em>"pas trivial"</em> : y a-t-il un commentaire pour expliquer son fonctionnement ?</p>
+</li>
+<li>
+<p>Si une règle métier explique une portion de code particulière : l&#8217;indiquer sous forme de commentaire. Indiquer la RG ou la Mantis</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Correction temporaire, patch <em>"moche, mais nécessaire"</em>, code <em>"laid, mais y a pas moyen de faire autrement"</em> : indiquer pourquoi c&#8217;est fait comme ça dans un commentaire !</p>
+</li>
+<li>
+<p>Eviter la sur-documentation : les commentaires sur les constructeurs par défauts, les getters/setters ou les méthodes héritées (hashCode, toString) n&#8217;ont aucun intérêt.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/assets/img/just-because.jpg" alt="just because">
+</div>
+<div class="title">Figure 1. courtesy of <a href="https://geek-and-poke.com">Geek &amp; Poke</a></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="maitriser-les-dépendances">Maitriser les dépendances</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>la librairie est conforme aux préco de la Stack logicielle et validée au sein de la DSI ?</p>
+</li>
+<li>
+<p>la version est à jour et compatible avec le framework actuel ?</p>
+</li>
+<li>
+<p>la librairie (ou une version particulière de la librairie) est assurée de ne pas avoir de faille de sécurité ?</p>
+</li>
+<li>
+<p>Est-ce que la licence de la librairie est compatible avec son utilisation sur le projet ?</p>
+</li>
+<li>
+<p>Est-ce que les dépendances transitives n&#8217;entrent pas en conflit avec celles déjà tirées. Pensez aux exclusions pour ces cas !!</p>
+</li>
+<li>
+<p>Est ce que les scope Maven sont correctement utilisés ? Scope <code>test</code> sur les librairies utilisées exclusivment pour les tests, etc.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="factoriser-et-réutiliser-lexistant">Factoriser et réutiliser l&#8217;existant</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>y-a-t-il une création "maison" de brique techniques (ou de fonctions utilitaires) qui auraient pu être déléguées à une librairie existante ?</p>
+</li>
+<li>
+<p>Est-ce qu&#8217;une fonction utilitaire n&#8217;existe pas déjà dans une librairie (apache Common) sous un autre nom ?</p>
+</li>
+<li>
+<p>Utilisation de code "utilitaire", type <a href="https://projectlombok.org/">Lombok</a>, pour simplifier les développements ?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lors des appels d&#8217;API, webservices et autres briques transverses <em>"maison"</em>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>S&#8217;appuyer au maximum sur le SDK s&#8217;il est disponible. (Plutôt que recoder une nouvelle brique d&#8217;appel)</p>
+</li>
+<li>
+<p>Privilégier les outils de générations (<code>xml2pojo</code>, <a href="https://www.jsonschema2pojo.org/"><code>json2pojo</code></a>, etc.) pour générer le code, éviter les erreurs et gagner en temps et en maintenance!</p>
+</li>
+<li>
+<p>Est-ce que la génération de code est portée par les outils lors de la phase de précompilation ?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tester">Tester</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que des tests unitaires sont mis en place ?</p>
+</li>
+<li>
+<p>Est-ce que la couverture sur les nouveaux tests est satisfaisante et en conformité avec les attendus projet ?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="gardez-les-choses-simples">Gardez les choses simples !</h3>
+<div class="paragraph">
+<p>Le Rasoir d&#8217;Ockham nous dit que la solution la plus simple est souvent la meilleure.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que l&#8217;implémentation n&#8217;est pas <em>overly-complex</em> par rapport au besoin ?</p>
+</li>
+<li>
+<p>N&#8217;y aurait-il pas eu une solution plus simple/lisible/compréhensible de l&#8217;implémenter ?</p>
+</li>
+<li>
+<p>Over-engineering : Est-ce que l&#8217;implémentation reste bien dans le cadre du besoin de l&#8217;US ? Eviter les <em>"j&#8217;ai ajouté ça en plus si on a besoin de faire ça plus tard&#8230;&#8203;"</em>. En général, les justifications avec des "si" sont douteuses.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="date-temps-et-fuseau">Date, Temps et Fuseau</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que la Date est Universelle ou Locale ?</p>
+</li>
+<li>
+<p>Est-ce que le fuseau de la date est bien conforme à l&#8217;attendu ?</p>
+</li>
+<li>
+<p>Est-ce que le Test Unitaire est bien exécutable en dehors du temps présent (utilisation d&#8217;une Clock dédié au test pour assurer sa reproductibilité dans le contexte du test)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="en-vrac">En vrac</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que le code contient des valeurs magiques ? (des valeurs de variables en dur dans le code, sans explication&#8230;&#8203;)</p>
+</li>
+<li>
+<p>Est-ce que les paramètres d&#8217;entrées sont vérifiés avant traitement (nullité et validité). Que ce passe t&#8217;il si les valeurs sont hors-bornes ?
+Feature-Flipping : Est-ce que le code prend en compte la notion de feature-flipping (si exigée pour le domaine) ?</p>
+</li>
+<li>
+<p>Trop de ternaire tue le ternaire. Ne pas imbriquer des ternaires : le code devient illisible</p>
+</li>
+<li>
+<p>Supprimer les constructeurs par défaut (sauf quand ils sont explicitement utiles)</p>
+</li>
+<li>
+<p>Est-ce que des logs sont correctement mis en place ? Est-ce que leur niveau est adapté ?</p>
+</li>
+<li>
+<p>Est-ce que les variables dépendant des environnements ont été externalisés ?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="code-review-javaspring">Code Review : Java/Spring</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="généralités-spring">Généralités Spring</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que l&#8217;injection de composant est correctement faite avec Spring ?</p>
+</li>
+<li>
+<p>Est-ce que l&#8217;injection est faite prioritairement par constructeur ?</p>
+</li>
+<li>
+<p>Est-ce que les beans sont correctement annotés (<code>@Component</code>, <code>@Service</code>, <code>@Repository</code>, etc.) ?</p>
+</li>
+<li>
+<p>Est-ce qu&#8217;il n&#8217;y a pas d&#8217;ambiguité sur les injections de beans ? (nommages correct ?)</p>
+</li>
+<li>
+<p>Est-ce qu&#8217;il n&#8217;y a pas de surdécoupage des beans (Interface/Implémentation)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="couche-données-objets-métiers">Couche Données: Objets Métiers</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que les objets métiers utilisent les <code>HashCode</code>/<code>Equals</code> ?</p>
+</li>
+<li>
+<p>Sont ils implémentés correctement ? ils doivent suivre une <a href="https://dzone.com/articles/working-with-hashcode-and-equals-in-java">règle d&#8217;implémentation précise</a>.</p>
+</li>
+<li>
+<p>Est-ce que le <code>equals()</code> est <a href="http://www.javapractices.com/topic/TopicAction.do?Id=17">implémenté correctement</a> ? Le mieux est de s&#8217;appuyer sur les fonctions utilitaires ou les générer par l&#8217;IDE, c&#8217;est moins risque d&#8217;erreur.</p>
+</li>
+<li>
+<p>Est-ce que les Repository sont bien stateless ?</p>
+</li>
+<li>
+<p>Est-ce que les Repository se limitent bien à de la récupération d&#8217;objets métiers ?les traitement métiers sont réalisés dans les classes Service, pas dans les Repository</p>
+</li>
+<li>
+<p>Est-ce que les <code>getXXX()</code> sur collection mettent en place un système de pagination pour éviter de retourner la base entière ?</p>
+</li>
+<li>
+<p>L&#8217;ouverture de transaction ne doit pas se faire sur la couche Repository.Lors de l&#8217;appel au Repository, la transaction doit déjà être ouverte. l&#8217;annotation @Transactional ne doit pas être présente dans le Repository</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="service-et-traitement-métier">Service et traitement métier</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que les contrôles d&#8217;accès sont correctement réalisés ?</p>
+</li>
+<li>
+<p>Est-ce que la transaction est bien ouverte explicitement ?</p>
+</li>
+<li>
+<p>Est-ce que le process métier est entièrement transactionnel ?</p>
+</li>
+<li>
+<p>Est-ce que les données (et le système) sont toujours cohérentes si le process métier est annulé (ou en erreur) et que la transaction est rollbackée ?</p>
+</li>
+<li>
+<p>Le service ne doit pas manipuler de DTO Metier (seul les DTO 'techniques' - objets de recherches, etc&#8230;&#8203; sont autorisés)</p>
+</li>
+<li>
+<p>Est-ce que chaque classe Service est bien stateless ?</p>
+</li>
+<li>
+<p>Est-ce que chaque classe Service ne se limite bien qu&#8217;à du code métier ? (</p>
+</li>
+<li>
+<p>Est-ce qu&#8217;il existe des variables de classes ? (alors qu&#8217;il ne devrait pas?)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="code-revue-api-et-frontend">Code Revue : API et Frontend</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="controller-et-api-rest">Controller et API REST</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Es-ce que le niveau de maturité de l&#8217;API REST est conforme à ce qui est attendu ?</p>
+</li>
+<li>
+<p>Est-ce que chaque URL est correctement constituée et leur verbe correctement implémenté ?</p>
+</li>
+<li>
+<p>Est ce que les objets de retour de Controller sont bien des DTO ?</p>
+</li>
+<li>
+<p>Est ce qu&#8217;un mécanisme de pagination est mis en place sur les retours de collections</p>
+</li>
+<li>
+<p>Est ce qu&#8217;un mécanisme de réponse partielle est mis en place ?</p>
+</li>
+<li>
+<p>Est-ce que le code retour correspond bien au verbe HTTP (par exemple un PATCH qui retourne un 200 au lieu de 204)</p>
+</li>
+<li>
+<p>Les Entités métier ne devraient pas être manipulés dans la couche controller, seule leur représentation déshydratées (DTO ou Json)</p>
+</li>
+<li>
+<p>Aucune ouverture de Transaction ne doit être faite dans cette couche</p>
+</li>
+<li>
+<p>Est-ce que les paramètres d&#8217;entrées sont bien vérifiés avant l&#8217;appel à la couche service ?</p>
+</li>
+<li>
+<p>Est-ce que la quantité de donnée transitant par l&#8217;API a été testée et validée ? Les données métiers sont-elles suffisamment déshydratées ?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="frontend">Frontend</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Est-ce que le champ est limité, lors de la saisie en taille ?</p>
+</li>
+<li>
+<p>Est-ce que le champ attend une taille minimale ?</p>
+</li>
+<li>
+<p>Est-ce que le champ autorise tous les caractères ( Que Alpha ou que numérique) ?</p>
+</li>
+<li>
+<p>Est-ce que le champ autorise les caractères hors Latin-1 ? Caractères étrangers (tels que さくら), symboles mathématiques (tels que αελ), &#8230;&#8203;</p>
+</li>
+<li>
+<p>Est-ce que le champ autorise des smileys <i class="twa twa-grinning"></i>, des drapeaux <i class="twa twa-us"></i> et autres emojis <i class="twa twa-girl"></i> ?</p>
+</li>
+<li>
+<p>Est-ce que le champ répond au format attendu (mail, SIRET, numéro de tel) ?</p>
+</li>
+<li>
+<p>Refresh-potent : Un Refresh (F5) sur une page doit réafficher le même écran à chaque fois</p>
+</li>
+<li>
+<p>Est-ce que le fichier d&#8217;internationalisation a été mise en place ?</p>
+</li>
+<li>
+<p>CSS : Eviter les <code>!important</code> en CSS</p>
+</li>
+<li>
+<p>Limiter l&#8217;utilisation des inline style. À mettre exceptionnellement quand il n&#8217;y a pas d&#8217;autres solutions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="etc-etc">etc., etc.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cette liste est évidemment loin d&#8217;être exhaustive ! Elle n&#8217;est qu&#8217;un rappel rapide des bonnes pratiques que l&#8217;on retrouve communément.</p>
+</div>
+<div class="paragraph">
+<p>Cette liste doit devenir automatique et s&#8217;étoffer au fur et à mesure de l&#8217;expérience sur le projet.</p>
+</div>
+<div class="paragraph">
+<p>Bons développements !</p>
+</div>
+</div>
+</div>
+  </div><a class="u-url" href="/2022/05/16/codereview.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+  
+    <div class="wrapper">
+  
+      <div class="footer-col-wrapper">
+        <div class="footer-col">
+          <p class="feed-subscribe">
+            <a href="/feed.xml">
+              <svg class="svg-icon orange">
+                <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+              </svg><span>Subscribe</span>
+            </a>
+          </p>
+        </div>
+        <div class="footer-col">
+          <p>this is my personal website and you can find here some of my ideas and practices. </p>
+        </div>
+      </div>
+  
+      <div class="social-links"><ul class="social-media-list"><li><a href="https://github.com/florentdupont"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">florentdupont</span></a></li><li><a href="https://www.twitter.com/_fdupont"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">_fdupont</span></a></li></ul>
+</div>
+  
+    </div>
+  
+  </footer></body>
+
+</html>
